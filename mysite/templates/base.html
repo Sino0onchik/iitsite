@@ -84,7 +84,7 @@
                                 <li><a href="{% url 'cafedras' %}">Кафедры</a>
                                     <ul class="sub-menu">
                                         {% for i in cafedras %}
-                                        <li><a href="{{ i.id }}">{{ i.title }}</a></li>
+                                        <li><a href="{% url 'cafedra_detail' i.pk %}">{{ i.title }}</a></li>
                                         {% endfor %}
                                         <li><a href="{% url 'cafedras' %}">Все кафедры</a></li>
                                     </ul>
