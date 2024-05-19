@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>ИИТ </title>
+    <title>Институт информационных технологий </title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -96,7 +96,7 @@
 
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Контакты</a></li>
+                                <li><a href="{% url 'contact' %}">Контакты</a></li>
                             </ul>
                         </div>
                         <!-- Header Menu End -->
@@ -108,7 +108,7 @@
                             <!-- Header Cart End -->
                             <!-- Header Login Join Start -->
                             <div class="header-login-join d-none d-lg-block">
-                                <a class="btn join-btn" href="#">Оставить заявку</a>
+                                <a class="btn join-btn" href="{% url 'contact' %}">Оставить заявку</a>
                             </div>
                             <!-- Header Login Join End -->
                         </div>
@@ -165,7 +165,7 @@
 
                             </ul>
                         </li>
-                        <li><a href="">Contact</a></li>
+                        <li><a href="{% url 'contact' %}">Контакты</a></li>
                     </ul>
                 </div>
             </div>
@@ -189,10 +189,10 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget widget-about">
-                                <a class="footer-logo" href="index.html"><img src="assets/images/logo-white.png" alt="Logo"></a>
+                                <a class="footer-logo" href="/"><img src="{% static 'assets/images/logo.png" alt="Logo"></a>
 
                                 <div class="widget-info">
-                                    <p>We support programs that create advancement opportunities for people.</p>
+                                    <p>Институт информационных технологий, далее ИИТ, является структурным подразделением КГТУ им. И. Раззакова.</p>
 
                                     <ul class="social">
                                         <li><a href="#"><i class="fab fa-facebook"></i></a></li>
@@ -210,10 +210,9 @@
 
                                 <div class="widget-link">
                                     <ul class="link">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Terms & Condition</a></li>
-                                        <li><a href="#">Student Spotlight</a></li>
+                                        <li><a href="#">Домой</a></li>
+                                        <li><a href="#">Абитуриенту</a></li>
+                                        <li><a href="#">Новости</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -222,14 +221,14 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget">
-                                <h4 class="footer-widget-title">Learning</h4>
+                                <h4 class="footer-widget-title">Кафедры</h4>
 
                                 <div class="widget-link">
                                     <ul class="link">
-                                        <li><a href="#">Project Management</a></li>
-                                        <li><a href="#">WordPress Development</a></li>
-                                        <li><a href="#">Business Strategy</a></li>
-                                        <li><a href="#">Software Development</a></li>
+                                        {% for i in cafedras %}
+                                        <li><a href="{% url 'cafedra_detail' i.pk %}">{{ i.title }}</a></li>
+                                        {% endfor %}
+
                                     </ul>
                                 </div>
                             </div>
@@ -238,14 +237,14 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget">
-                                <h4 class="footer-widget-title">Contact Us</h4>
+                                <h4 class="footer-widget-title">Свяжитесь с нами</h4>
 
                                 <ul class="widget-info">
                                     <li>
                                         <div class="media">
                                             <i class="flaticon-location-pin"></i>
                                             <div class="media-body">
-                                                <span>PO Box 16122 Collins Street West Victoria 8007 Australia</span>
+                                                <span>Бишкек Кыргызстан 2024</span>
                                             </div>
                                         </div>
                                     </li>
@@ -253,7 +252,7 @@
                                         <div class="media">
                                             <i class="fas fa-phone-volume"></i>
                                             <div class="media-body">
-                                                <a href="tel:+91458654528">+91 458 654 528</a>
+                                                <a href="tel:{{ site.phone }}">{{ site.contacts }}</a>
                                             </div>
                                         </div>
                                     </li>
@@ -261,7 +260,7 @@
                                         <div class="media">
                                             <i class="flaticon-email"></i>
                                             <div class="media-body">
-                                                <a href="gostudy@gmail.com">gostudy@gmail.com</a>
+                                                <a href="{{ site.email }}">{{ site.emails }}</a>
                                             </div>
                                         </div>
                                     </li>
@@ -277,10 +276,10 @@
                 <div class="footer-copyright">
                     <div class="copyright-wrapper">
                         <div class="copyright-design">
-                            <p>Designed & Developed by <a href="#"> Raistheme</a></p>
+                            <p></p>
                         </div>
                         <div class="copyright-text">
-                            <p>&copy; Copyright 2021 Gostudy All rights reserved. </p>
+                            <p>&copy; Copyright 2024 </p>
                         </div>
                     </div>
                 </div>

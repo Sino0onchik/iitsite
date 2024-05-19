@@ -26,6 +26,12 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('title', )
 
 
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'created_at')
+    search_fields = ('name', )
+
+
 @admin.register(Brands)
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('id', 'image')

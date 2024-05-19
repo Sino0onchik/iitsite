@@ -9,4 +9,5 @@ urlpatterns = [
 
     path('cafedra/list/', CafedraListView.as_view(), name='cafedras'),
     path('cafedra/detail/<int:pk>/', CafedraDetailView.as_view(), name='cafedra_detail'),
+    path('contact/', ApplicationCreateView.as_view(), name='contact'),
 ]
