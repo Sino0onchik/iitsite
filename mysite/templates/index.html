@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!-- Hero Start -->
+        <div class="hero-section section d-lg-flex align-items-lg-start justify-content-lg-center">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Hero Content Start -->
+                        <div class="hero-content">
+                            <h2 class="title">Институт информационных технологий</h2>
+                            <p>ИИТ осуществляет подготовку специалистов, бакалавров и магистров наук; проводит курсы повышения квалификаций в области информационных технологий, согласно полученным лицензиям на основе единства учебной, научной и воспитательной работы. Выполняет фундаментальные и прикладные исследования.    </p>
+
+                        </div>
+                        <!-- Hero Content End -->
+                    </div>
+                </div>
+            </div>
+            <!-- Hero Image Start -->
+            <div class="hero-images">
+                <div class="image">
+                    <img src="{% static 'assets/images/politeh.jpg' %}" alt="">
+                </div>
+                <div class="shape-1 parallaxed">
+                    <img src="{% static 'assets/images/shape/shape-1.png' %}" alt="">
+                </div>
+                <div class="shape-2 parallaxed">
+                    <img src="{% static 'assets/images/shape/shape-2.png' %}" alt="">
+                </div>
+                <!-- Hero Image End -->
+            </div>
+
+        </div>
+        <!-- Hero End -->
+
+        <!-- Features Start -->
+        <div class="section features-section">
+            <div class="container">
+                <!-- Features Wrapper Start -->
+                <div class="features-wrapper">
+                    <div class="row g-0">
+                        <div class="col-lg-4 col-md-4 features-col">
+                            <!-- Features Item Start -->
+                            <div class="features-item">
+                                <div class="features-icon">
+                                    <img src="{% static 'assets/images/features/f-icon-1.png' %}" alt="">
+                                </div>
+                                <div class="features-content">
+                                    <h3 class="title">Learn new skills</h3>
+                                    <p>With flexible courses</p>
+                                </div>
+                            </div>
+                            <!-- Features Item End -->
+                        </div>
+                        <div class="col-lg-4 col-md-4 features-col">
+                            <!-- Features Item Start -->
+                            <div class="features-item">
+                                <div class="features-icon">
+                                    <img src="{% static 'assets/images/features/f-icon-2.png' %}" alt="">
+                                </div>
+                                <div class="features-content">
+                                    <h3 class="title">Expert Teacher</h3>
+                                    <p>Upskill with Speacilist</p>
+                                </div>
+                            </div>
+                            <!-- Features Item End -->
+                        </div>
+                        <div class="col-lg-4 col-md-4 features-col">
+                            <!-- Features Item Start -->
+                            <div class="features-item">
+                                <div class="features-icon">
+                                    <img src="{% static 'assets/images/features/f-icon-3.png' %}" alt="">
+                                </div>
+                                <div class="features-content">
+                                    <h3 class="title">Online Degrees</h3>
+                                    <p>Study flexibly online</p>
+                                </div>
+                            </div>
+                            <!-- Features Item End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Features Wrapper End -->
+            </div>
+        </div>
+        <!-- Features End -->
+
+        <!-- Courses Start -->
+        <div class="section section-padding">
+            <div class="container">
+                <!-- Section Title Start -->
+                <div class="section-title text-center">
+                    <h2 class="title">Директорат ИИТ</h2>
+                </div>
+                <!-- Section Title End -->
+
+                <div class="section team-2-section section-padding">
+            <div class="container">
+                <!-- Team Item Wrapper Start -->
+                <div class="team-2-item-wrapper our-team-wrap">
+                    <div class="row">
+                        {% for i in directors %}
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <!-- Single Team Start -->
+                            <div class="single-team">
+                                <div class="team-img">
+                                    <a href="{% url 'teacher_detail' i.pk %}"><img src="{{ i.image.url }}" alt="team"></a>
+                                </div>
+                                <div class="team-content">
+                                    <div class="team-name-deg">
+                                        <h5 class="name"><a href="{% url 'teacher_detail' i.pk %}">{{ i.name }}</a></h5>
+                                        <span class="team-deg">{{ i.profission }}</span>
+                                    </div>
+                                    <div class="team-share">
+                                        <span><i class="fas fa-share-alt"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Team End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Team Item Wrapper End -->
+            </div>
+        </div>
+                <!-- View Courses End -->
+            </div>
+        </div>
+
+
+        <div class="section section-padding">
+            <div class="container">
+                <!-- Section Title Start -->
+                <div class="section-title text-center">
+                    <h2 class="title">Наши кафедры</h2>
+                </div>
+                <!-- Section Title End -->
+
+                <!-- Courses Wrapper Start -->
+                <div class="courses-wrapper">
+                    <div class="row">
+                        {% for i in cafedras %}
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Courses Start -->
+                            <div class="single-course">
+                                <!-- Courses Image Start -->
+                                <div class="courses-image">
+                                    <a href="{% url 'cafedra_detail' i.pk %}"><img src="{{ i.image.url }}" alt="Courses"></a>
+                                    <div class="top-meta">
+<!--                                        <div class="categories">-->
+<!--                                            <a class="tag color-1" href="#">{{ i.title }}</a>-->
+<!--                                        </div>-->
+                                        <div class="wishlist">
+                                            <a href="{% url 'cafedra_detail' i.pk %}"><i class="far fa-bookmark"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Courses Image End -->
+                                <!-- Courses Content Start -->
+                                <div class="courses-content">
+
+                                    <h3 class="title"><a href="{% url 'cafedra_detail' i.pk %}">{{ i.title }}</a></h3>
+                                </div>
+                                <!-- Courses Content End -->
+                                <!-- Courses Meta Start -->
+                                <div class="courses-meta">
+                                    <div class="course-enroll-rating d-flex">
+                                        <p><i class="flaticon-user"></i> 4</p>
+<!--                                        <p><i class="flaticon-star-1"></i> 1</p>-->
+                                    </div>
+<!--                                    <div class="price">-->
+<!--                                        <span>£59.99</span>-->
+<!--                                    </div>-->
+                                </div>
+                                <!-- Courses Meta End -->
+
+                            </div>
+                            <!-- Single Courses End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <!-- Courses Wrapper End -->
+                <!-- View Courses Start-->
+                <div class="view-all-courses">
+                    <div class="view-courses-content">
+                        <h3 class="title">Посмотри все кафедры</h3>
+                    </div>
+                    <a class="btn" href="{% url 'cafedras' %}">Посмотреть все кафедры</a>
+                </div>
+                <!-- View Courses End -->
+            </div>
+        </div>
+        <!-- Courses End -->
+
+        <!-- Expert Track Start -->
+        <div class="section expert-track-section" style="background-image: url({% static 'assets/images/politeh.jpg' %});">
+            <div class="container">
+                <!-- Expert Track Wrapper Start -->
+                <div class="expert-track-wrapper">
+                    <div class="row">
+                        {% for i in news %}
+                        <div class="col-xl-6 col-lg-12">
+                            <!-- Expert Track Content Start -->
+                            <div class="expert-track-content">
+                                <h3 class="sub-title">{{ i.category }}</h3>
+                                <h2 class="title">{{ i.title }}</h2>
+                                <a class="btn" href="{% url 'news' %}">Посмотреть все новости</a>
+                            </div>
+                            <!-- Expert Track Content End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Expert Track Wrapper End -->
+            </div>
+        </div>
+        <!-- Expert Track Start -->
+
+        <!-- Global Learner Start -->
+        <div class="section global-learner-section section-padding-02">
+            <div class="container">
+                <!-- Global Learner Wrapper Start -->
+                <p>Институт информационных технологий, далее ИИТ, является структурным подразделением КГТУ им. И. Раззакова.
+
+   Основная задача ИИТ – профессиональная подготовка IT-специалистов предметом деятельности, которых является проектирование, разработка и техническое сопровождение программного обеспечения, как коммерческой продукции, удовлетворяющей заданным конструктивным,  функциональным и технологическим требованиям.
+
+    ИИТ осуществляет подготовку специалистов, бакалавров и магистров наук; проводит курсы повышения квалификаций в области информационных технологий, согласно полученным лицензиям на основе единства учебной, научной и воспитательной работы. Выполняет фундаментальные и прикладные исследования.
+
+    В образовательной деятельности ИИТ руководствуется:
+
+Законом КР «Об образовании», нормативными документами Министерства образования и науки КР, «Положением об образовательной организации высшего профессионального образования КР», Уставом КГТУ.</p>
+                <!-- Global Learner Wrapper End -->
+            </div>
+        </div>
+        <!-- Global Learner End -->
+
+
+
+
+
+        <!-- Brand Logo End -->
+        <div class="section Brand-section">
+            <div class="container">
+                <!-- Brand Wrapper End -->
+                <div class="brand-wrapper section-padding text-center">
+                    <h3 class="brand-title">Партнерство с ведущими мировыми университетами и компаниями</h3>
+
+                    <div class="brand-active">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for i in brands %}
+                                <div class="swiper-slide single-brand">
+                                    <img src="{{ i.image.url }}" alt="Brand">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Brand Wrapper End -->
+            </div>
+        </div>
+{% endblock %}

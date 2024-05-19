@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- Page Banner Start -->
+        <div class="section page-banner-section" style="background-image: url({% static 'assets/images/politeh.jpg' %});">
+            <div class="container">
+                <!-- Page Banner Wrapper Start -->
+                <div class="page-banner-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Page Banner Content Start -->
+                            <div class="page-banner text-center">
+                                <h2 class="title"></h2>
+
+                            </div>
+                            <!-- Page Banner Content End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page Banner Wrapper End -->
+            </div>
+        </div>
+        <!-- Page Banner End -->
+
+        <!-- Courses Start -->
+        <div class="section top-courses-3-section courses-grid-section">
+            <div class="container">
+                <div class="top-courses-wrapper">
+                    <!-- Section Title Start -->
+                    <div class="section-title text-center">
+                        <h2 class="title">Кафедры ИИТ</h2>
+                    </div>
+
+
+                    <!-- Courses Wrapper Start -->
+                    <div class="top-courses-content-wrapper">
+                        <div class="row grid">
+                            {% for i in cafedras %}
+                            <div class="col-lg-3 col-sm-6 course-health course-cooking">
+                                <!-- Single Courses Start -->
+                                <div class="single-course">
+                                    <!-- Courses Image Start -->
+                                    <div class="courses-image">
+                                        <a href="{% url 'cafedra_detail' i.pk %}"><img src="{{ i.image.url }}" alt="Courses"></a>
+                                        <div class="top-meta">
+
+                                            <div class="wishlist">
+                                                <a href="#"><i class="far fa-bookmark"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Courses Image End -->
+                                    <!-- Courses Content Start -->
+                                    <div class="courses-content">
+
+                                        <h3 class="title"><a href="{% url 'cafedra_detail' i.pk %}">{{ i.title }}</a></h3>
+                                    </div>
+                                    <!-- Courses Content End -->
+                                    <!-- Courses Meta Start -->
+                                    <div class="courses-meta">
+                                        <div class="course-enroll-rating d-flex">
+                                            <p><i class="flaticon-user"></i> 4</p>
+                                        </div>
+
+                                    </div>
+                                    <!-- Courses Meta End -->
+
+                                </div>
+                                <!-- Single Courses End -->
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <!-- Courses Wrapper End -->
+
+                    <!-- Gostudy Pagination Start -->
+                    <div class="gostudy-pagination courses-grid-pagination">
+                        <ul class="pagination justify-content-center">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% for num in page_obj.paginator.page_range %}
+                                            {% if page_obj.number == num %}
+                                                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                    </div>
+                    <!-- Gostudy Pagination End -->
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Courses End -->
+{% endblock %}

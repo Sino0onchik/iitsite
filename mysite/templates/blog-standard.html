@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+        <!-- Page Banner Start -->
+        <div class="section page-banner-section" style="background-image: url({% static 'assets/images/bg/banner-img.jpg);">
+            <div class="container">
+                <!-- Page Banner Wrapper Start -->
+                <div class="page-banner-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Page Banner Content Start -->
+                            <div class="page-banner text-center">
+                                <h2 class="title">Новости</h2>
+                                <ul class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Домой</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Новости</li>
+                                </ul>
+                            </div>
+                            <!-- Page Banner Content End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page Banner Wrapper End -->
+            </div>
+        </div>
+        <!-- Page Banner End -->
+
+        <!-- Blog Start -->
+        <div class="section blog-standard-section section-padding">
+            <div class="container">
+                <!-- Blog Wrapper Start -->
+                <div class="blog-standard-wrapper wrapper">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="blog-post-wrapper">
+                                {% for i in news %}
+                                <!-- Single Blog Post Start -->
+                                <div class="single-blog single-blog-post">
+                                    <!-- Blog Image Start -->
+                                    <div class="blog-post-image">
+                                        <a href="{% url 'news_detail' i.pk %}"><img src="{{ i.image.url }}" alt="blog"></a>
+                                    </div>
+                                    <!-- Blog Image End -->
+                                    <!-- Blog Content Start -->
+                                    <div class="blog-content">
+                                        <div class="post-meta-wrap">
+                                            <div class="blog-author-category">
+                                                <a class="category color-1" href="#">{{ i.category.title }}</a>
+
+                                            </div>
+
+                                        </div>
+
+                                        <h3 class="title"><a href="{% url 'news_detail' i.pk %}">{{ i.title }}</a></h3>
+                                        <p></p>
+                                        <a class="read-more" href="{% url 'news_detail' i.pk %}">Читать подробнее</a>
+                                    </div>
+                                    <!-- Blog Content End -->
+                                </div>
+                                <!-- Single Blog Post End -->
+                                {% endfor %}
+                                <!-- Gostudy Pagination Start -->
+                                <div class="gostudy-pagination">
+                                    <ul class="pagination justify-content-center">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% for num in page_obj.paginator.page_range %}
+                                            {% if page_obj.number == num %}
+                                                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+
+                                <!-- Gostudy Pagination End -->
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- Blog Sidebar Start -->
+                            <div class="blog-sidebar">
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Search Form Start -->
+                                    <form class="search-form" action="{% url 'news' %}" method="get">
+                                        <input type="text" name="title" placeholder="Искать...">
+                                        <button type="submit"><i class="flaticon-loupe"></i></button>
+                                    </form>
+                                    <!-- Widget Search Form End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Недавне новости</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Recent Post Start -->
+                                    <div class="recent-posts">
+                                        <ul>
+                                            {% for i in new_news %}
+                                            <li>
+                                                <a class="post-link" href="{% url 'news_detail' i.pk %}">
+                                                    <div class="post-thumb">
+                                                        <img src="{{ i.image.url }}" alt="">
+                                                    </div>
+                                                    <div class="post-text">
+                                                        <h4 class="title">{{ i.title }}</h4>
+                                                        <span class="post-meta">{{ i.created_at }}</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Recent Post End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Категории</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Category Start -->
+                                    <ul class="category">
+                                        {% for i in categories %}
+                                        <li class="cate-item"><a href="#">{{ i.title }} <span class="post-count">{{ i.all_news.all.count }}</span></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    <!-- Widget Category End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+
+                                <!-- Sidebar Widget End -->
+                            </div>
+                            <!-- Blog Sidebar End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Wrapper End -->
+            </div>
+        </div>
+{% endblock %}

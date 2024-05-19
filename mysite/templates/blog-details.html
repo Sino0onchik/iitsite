@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- Blog Start -->
+        <div class="section blog-standard-section section-padding">
+            <div class="container">
+                <!-- Blog Wrapper Start -->
+                <div class="blog-details-wrapper">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Blog Details Post Start -->
+                            <div class="blog-details-post">
+                                <!-- Single Blog Post Start -->
+                                <div class="single-blog-post">
+                                    <!-- Blog Image Start -->
+                                    <div class="blog-post-image">
+                                        <a href="#"><img src="{{ news.image.url }}" alt="blog"></a>
+                                    </div>
+                                    <!-- Blog Image End -->
+                                    <!-- Blog Details Content Start -->
+                                    <div class="blog-details-content">
+                                        <!-- Blog Post Meta start -->
+                                        <div class="post-meta-wrap">
+                                            <div class="blog-author-category">
+                                                <a class="category color-1" href="{% url 'news' %}?category={{news.category.id}}">{{ news.category.title }}</a>
+
+                                            </div>
+                                            <span class="post-date">{{ news.created_at }}</span>
+                                        </div>
+                                        <!-- Blog Post Meta End -->
+                                        <!-- Blog Details Text Start -->
+
+                                        <!-- Blog Blockquote End -->
+                                        <!-- Blog Details Text Start -->
+                                        <div class="blog-details-text">
+                                            <h4 class="title">{{ news.title }}</h4>
+                                            {{ news.description|safe }}
+                                        </div>
+
+
+                                        <div class="blog-related-post">
+                                            <h4 class="title">Похожие новости</h4>
+                                            <div class="related-post-wrapper">
+                                                <div class="row">
+                                                    {% for i in related_news %}
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <!-- Single Blog Start -->
+                                                        <div class="single-blog">
+                                                            <!-- Blog Image Start -->
+                                                            <div class="blog-image">
+                                                                <a href="#"><img src="{{ i.image.url }}" alt="blog"></a>
+                                                            </div>
+                                                            <!-- Blog Image End -->
+                                                            <!-- Blog Content Start -->
+                                                            <div class="blog-content">
+                                                                <div class="blog-author-category">
+                                                                    <a class="category color-1" href="#">{{ i.category.title }}</a>
+                                                                </div>
+                                                                <h3 class="title"><a href="{% url 'news_detail' i.pk %}">{{ i.title }}</a></h3>
+                                                                <a class="read-more" href="{% url 'news_detail' i.pk %}">Read More</a>
+                                                            </div>
+                                                            <!-- Blog Content End -->
+                                                        </div>
+                                                        <!-- Single Blog End -->
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Blog Details Related Post End -->
+                                        <!-- Blog Details Comments Start -->
+                                        <div class="blog-details-comments">
+                                            <h4 class="comments-title">Comments <span>(02)</span></h4>
+                                            <ul>
+                                                <li>
+                                                    <div class="single-comment stand-comment">
+                                                        <div class="comment-thumb">
+                                                            <img src="assets/images/blog/author-1.jpg" alt="">
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="author-name">
+                                                                <h5 class="name">John Harris</h5>
+                                                                <span class="meta-data">September 23, 2020</span>
+                                                                <a class="reply" href="#">Reply</a>
+                                                            </div>
+                                                            <p>We realised we really wanted to catch a glimpse of what went on behind the scenes of the companies we looked up to. And we thought other people would want to know too.</p>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="children">
+                                                        <li>
+                                                            <div class="single-comment">
+                                                                <div class="comment-thumb">
+                                                                    <img src="assets/images/blog/author-2.jpg" alt="">
+                                                                </div>
+                                                                <div class="comment-content">
+                                                                    <div class="author-name">
+                                                                        <h5 class="name">Kevin Parry</h5>
+                                                                        <span class="meta-data">September 23, 2020</span>
+                                                                        <a class="reply" href="#">Reply</a>
+                                                                    </div>
+                                                                    <p>So we decided to organise an event to share these stories. Today, we run monthly Show & Tell events and an annual conference.</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Blog Details Comments End -->
+                                        <!-- Blog Comments Reply Start -->
+                                        <div class="blog-comment-reply">
+                                            <h3 class="comment-title">Leave a Reply </h3>
+                                            <p class="comment-notes">Your email address will not be published. Required fields are marked *</p>
+                                            <form class="comment-form" action="#">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Single Form Start -->
+                                                        <div class="single-form">
+                                                            <input type="text" placeholder="Your Name">
+                                                            <i class="flaticon-user-1"></i>
+                                                        </div>
+                                                        <!-- Single Form End -->
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <!-- Single Form Start -->
+                                                        <div class="single-form">
+                                                            <input type="email" placeholder="Your Email">
+                                                            <i class="flaticon-email"></i>
+                                                        </div>
+                                                        <!-- Single Form End -->
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <!-- Single Form Start -->
+                                                        <div class="single-form">
+                                                            <input type="text" placeholder="Website">
+                                                            <i class="flaticon-worldwide"></i>
+                                                        </div>
+                                                        <!-- Single Form End -->
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <!-- Single Form Start -->
+                                                        <div class="single-form">
+                                                            <textarea placeholder="Your Comment"></textarea>
+                                                            <i class="flaticon-edit"></i>
+                                                        </div>
+                                                        <!-- Single Form End -->
+                                                    </div>
+                                                </div>
+                                                <!-- Blog Comments Check Start -->
+                                                <div class="comment-form-check">
+                                                    <input id="comment-check" class="form-check-input" type="checkbox">
+                                                    <label for="comment-check" class="form-check-label">Save my name, email, and website in this browser for the next time I comment.</label>
+                                                </div>
+                                                <!-- Blog Comments Check End -->
+                                                <!-- Blog Comments Button Start -->
+                                                <div class="comment-btn">
+                                                    <button class="btn" type="submit">Post Comment</button>
+                                                </div>
+                                                <!-- Blog Comments Button End -->
+                                            </form>
+                                        </div>
+                                        <!-- Blog Comments Reply End -->
+                                    </div>
+                                    <!-- Blog Details Content End -->
+                                </div>
+                                <!-- Single Blog Post End -->
+
+                            </div>
+                            <!-- Blog Details Post End -->
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- Blog Sidebar Start -->
+                            <div class="blog-sidebar">
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Search Form Start -->
+                                    <form class="search-form" action="{% url 'news' %}" method="get">
+                                        <input type="text" name="title" placeholder="Искать...">
+                                        <button type="submit"><i class="flaticon-loupe"></i></button>
+                                    </form>
+                                    <!-- Widget Search Form End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Последние новости</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Recent Post Start -->
+                                    <div class="recent-posts">
+                                        <ul>
+                                            {% for i in new_news %}
+                                            <li>
+                                                <a class="post-link" href="#">
+                                                    <div class="post-thumb">
+                                                        <img src="{{ i.image.url }}" alt="">
+                                                    </div>
+                                                    <div class="post-text">
+                                                        <h4 class="title">{{ i.title }}</h4>
+                                                        <span class="post-meta">{{ i.created_at }}</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Recent Post End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+                                <div class="sidebar-widget">
+                                    <!-- Widget Title Start -->
+                                    <div class="widget-title">
+                                        <h3 class="title">Катеории</h3>
+                                    </div>
+                                    <!-- Widget Title End -->
+                                    <!-- Widget Category Start -->
+                                    <ul class="category">
+                                        {% for i in categories %}
+                                        <li class="cate-item"><a href="#">{{ i.title }} <span class="post-count">{{ i.all_news.all.count }}</span></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    <!-- Widget Category End -->
+                                </div>
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+
+                                <!-- Sidebar Widget End -->
+                                <!-- Sidebar Widget Start -->
+
+                                <!-- Sidebar Widget End -->
+                            </div>
+                            <!-- Blog Sidebar End -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog Wrapper End -->
+            </div>
+        </div>
+        <!-- Blog End -->
+{% endblock %}
