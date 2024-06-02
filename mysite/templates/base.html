@@ -81,12 +81,12 @@
                                     <a href="{% url 'home' %}">Домой</a>
 
                                 </li>
-                                <li><a href="{% url 'cafedras' %}">Кафедры</a>
+                                <li><a href="{% url 'cafedras' %}">Направление</a>
                                     <ul class="sub-menu">
                                         {% for i in cafedras %}
                                         <li><a href="{% url 'cafedra_detail' i.pk %}">{{ i.title }}</a></li>
                                         {% endfor %}
-                                        <li><a href="{% url 'cafedras' %}">Все кафедры</a></li>
+                                        <li><a href="{% url 'cafedras' %}">Все направлении</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">О нас</a></li>
