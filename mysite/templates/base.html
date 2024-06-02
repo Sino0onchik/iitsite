@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Институт информационных технологий </title>
+    <title>Кафедра Прикладной математики и информатики</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -189,10 +189,10 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget widget-about">
-                                <a class="footer-logo" href="/"><img src="{% static 'assets/images/logo.png" alt="Logo"></a>
+                                <a class="footer-logo" href="/"><img src="{% static 'logo/logo.png' %}" alt="Logo"></a>
 
                                 <div class="widget-info">
-                                    <p>Институт информационных технологий, далее ИИТ, является структурным подразделением КГТУ им. И. Раззакова.</p>
+                                    <p>Кафедра Прикладной математики и информатики, КГТУ им. И. Раззакова.</p>
 
                                     <ul class="social">
                                         <li><a href="#"><i class="fab fa-facebook"></i></a></li>
@@ -221,7 +221,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget">
-                                <h4 class="footer-widget-title">Кафедры</h4>
+                                <a href="{% url 'cafedras' %}"><h4 class="footer-widget-title">Направлении</h4></a>
 
                                 <div class="widget-link">
                                     <ul class="link">
