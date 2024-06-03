@@ -1,11 +1,12 @@
 <!doctype html>
 {% load static %}
+{% load custom_filters %}
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Кафедра Прикладной математики и информатики</title>
+    <title>{% get_or_create_content 'Кафедра Прикладной математики и информатики' %}</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,25 +79,32 @@
                         <div class="header-menu d-none d-lg-block">
                             <ul class="main-menu">
                                 <li class="active-menu">
-                                    <a href="{% url 'home' %}">Домой</a>
+                                    <a href="{% url 'home' %}">{% get_or_create_content 'Домой' %}</a>
 
                                 </li>
-                                <li><a href="{% url 'cafedras' %}">Направление</a>
+                                <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Направление' %}</a>
                                     <ul class="sub-menu">
                                         {% for i in cafedras %}
                                         <li><a href="{% url 'cafedra_detail' i.pk %}">{{ i.title }}</a></li>
                                         {% endfor %}
-                                        <li><a href="{% url 'cafedras' %}">Все направлении</a></li>
+                                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Все направлении' %}</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">О нас</a></li>
-                                <li><a href="{% url 'news' %}">Новости</a>
+                                <li><a href="">{% get_or_create_content 'Доп Информация' %}</a>
                                     <ul class="sub-menu">
-                                        <li><a href="{% url 'news' %}">Новости</a></li>
+                                        {% for i in pages %}
+                                        <li><a href="{% url 'page_detail' i.pk %}">{{ i.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'about_us' %}">{% get_or_create_content 'О нас' %}</a></li>
+                                <li><a href="{% url 'news' %}">{% get_or_create_content 'Новости' %}</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'news' %}">{% get_or_create_content 'Новости' %}</a></li>
 
                                     </ul>
                                 </li>
-                                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                                <li><a href="{% url 'contact' %}">{% get_or_create_content 'Контакты' %}</a></li>
                             </ul>
                         </div>
                         <!-- Header Menu End -->
@@ -108,7 +116,7 @@
                             <!-- Header Cart End -->
                             <!-- Header Login Join Start -->
                             <div class="header-login-join d-none d-lg-block">
-                                <a class="btn join-btn" href="{% url 'contact' %}">Оставить заявку</a>
+                                <a class="btn join-btn" href="{% url 'contact' %}">{% get_or_create_content 'Оставить заявку' %}</a>
                             </div>
                             <!-- Header Login Join End -->
                         </div>
@@ -147,19 +155,19 @@
                 <div class="offcanvas-menu">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="{% url 'home' %}">Домой</a>
+                            <a href="{% url 'home' %}">{% get_or_create_content 'Домой' %}</a>
 
                         </li>
-                        <li><a href="{% url 'cafedras' %}">Кафедры</a>
+                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Кафедры' %}</a>
                                     <ul class="sub-menu">
                                         {% for i in cafedras %}
                                         <li><a href="{{ i.id }}">{{ i.title }}</a></li>
                                         {% endfor %}
-                                        <li><a href="{% url 'cafedras' %}">Все кафедры</a></li>
+                                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Все кафедры' %}</a></li>
                                     </ul>
                                 </li>
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="{% url 'news' %} ">Новости</a>
+                        <li><a href="{% url 'about_us' %}">О нас</a></li>
+                        <li><a href="{% url 'news' %} ">{% get_or_create_content 'Новости' %}</a>
                                     <ul class="sub-menu">
                                         <li><a href="{% url 'news' %}">Новости</a></li>
 
@@ -192,13 +200,9 @@
                                 <a class="footer-logo" href="/"><img src="{% static 'logo/logo.png' %}" alt="Logo"></a>
 
                                 <div class="widget-info">
-                                    <p>Кафедра Прикладной математики и информатики, КГТУ им. И. Раззакова.</p>
+                                    <p>{% get_or_create_content 'Кафедра Прикладной математики и информатики, КГТУ им. И. Раззакова.' %}</p>
 
-                                    <ul class="social">
-                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-github"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                             <!-- Footer Widget End -->
@@ -206,13 +210,13 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget">
-                                <h4 class="footer-widget-title">Useful Links</h4>
+                                <h4 class="footer-widget-title">Дополнительные Страницы</h4>
 
                                 <div class="widget-link">
                                     <ul class="link">
-                                        <li><a href="#">Домой</a></li>
-                                        <li><a href="#">Абитуриенту</a></li>
-                                        <li><a href="#">Новости</a></li>
+                                        {% for i in pages %}
+                                            <li><a href="{% url 'page_detail' i.pk %}">{{ i.title }}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -221,7 +225,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget">
-                                <a href="{% url 'cafedras' %}"><h4 class="footer-widget-title">Направлении</h4></a>
+                                <a href="{% url 'cafedras' %}"><h4 class="footer-widget-title">{% get_or_create_content 'Направлении' %}</h4></a>
 
                                 <div class="widget-link">
                                     <ul class="link">
@@ -237,14 +241,14 @@
                         <div class="col-lg-3 col-sm-6">
                             <!-- Footer Widget Start -->
                             <div class="footer-widget">
-                                <h4 class="footer-widget-title">Свяжитесь с нами</h4>
+                                <h4 class="footer-widget-title">{% get_or_create_content 'Свяжитесь с нами' %}</h4>
 
                                 <ul class="widget-info">
                                     <li>
                                         <div class="media">
                                             <i class="flaticon-location-pin"></i>
                                             <div class="media-body">
-                                                <span>Бишкек Кыргызстан 2024</span>
+                                                <span>{{ site.address }}</span>
                                             </div>
                                         </div>
                                     </li>

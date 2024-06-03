@@ -63,8 +63,8 @@ class Cafedra(models.Model):
         return f'{self.title}'
 
     class Meta:
-        verbose_name = 'Кафедра'
-        verbose_name_plural = 'Кафедры'
+        verbose_name = 'Направления'
+        verbose_name_plural = 'Направлении'
         ordering = ['title']
 
 
@@ -109,6 +109,7 @@ class SiteSetting(SingletonModel):
     dictors = models.ManyToManyField(Teacher, blank=True, verbose_name='Директорат')
     contacts = models.TextField(blank=True, verbose_name='Контакт')
     emails = models.TextField(blank=True, verbose_name='Почта')
+    description = RichTextField(blank=True, null=True, verbose_name='О нас')
     address = models.CharField(max_length=123, verbose_name="Адрес")
     address_map = models.TextField( verbose_name="Адрес на карте", default='''
     <a class="dg-widget-link" href="http://2gis.kg/bishkek/firm/70000001021088130/center/74.587426,42.845011/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Бишкека</a><div class="dg-widget-link"><a href="http://2gis.kg/bishkek/firm/70000001021088130/photos/70000001021088130/center/74.587426,42.845011/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">Фотографии компании</a></div><div class="dg-widget-link"><a href="http://2gis.kg/bishkek/center/74.587426,42.845011/zoom/16/routeTab/rsType/bus/to/74.587426,42.845011╎Кыргызский Государственный Технический Университет им. И. Раззакова, ректорат?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Кыргызский Государственный Технический Университет им. И. Раззакова, ректорат</a></div><script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script><script charset="utf-8">new DGWidgetLoader({"width":640,"height":600,"borderColor":"#a3a3a3","pos":{"lat":42.845011,"lon":74.587426,"zoom":16},"opt":{"city":"bishkek"},"org":[{"id":"70000001021088130"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
@@ -129,7 +130,7 @@ class Brands(models.Model):
 
 class Application(models.Model):
     name = models.CharField(max_length=123, verbose_name='Имя')
-    email = models.EmailField(verbose_name='Почта')
+    email = models.CharField(verbose_name='Почта', max_length=123)
     phone = models.CharField(max_length=123, verbose_name='Номер телефона')
     message = models.TextField(verbose_name='Комментарий')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -141,3 +142,42 @@ class Application(models.Model):
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
         ordering = ['-created_at']
+
+
+class Page(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    content = RichTextField(verbose_name='Содержимое')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Страница'
+        verbose_name_plural = 'Страницы'
+
+
+class PageImage(models.Model):
+    page = models.ForeignKey(Page , on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return f'{self.page}'
+
+    class Meta:
+        verbose_name = 'Изображения'
+        verbose_name_plural = 'Изображении'
+
+
+class PageFile(models.Model):
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name='files')
+    file = models.FileField(upload_to='files/')
+    description = models.CharField(max_length=123)
+
+    def __str__(self):
+        return f'{self.page}'
+
+    class Meta:
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'
+

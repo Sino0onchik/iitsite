@@ -58,3 +58,22 @@ class SiteContentAdmin(admin.ModelAdmin):
         if obj:  # Editing an existing object
             return self.readonly_fields + ('original_text',)
         return self.readonly_fields
+
+
+class PageFilesInline(admin.TabularInline):
+    model = PageFile
+    extra = 1
+    fields = ['file', 'description']
+
+
+class PageImagesInline(admin.TabularInline):
+    model = PageImage
+    extra = 1
+    fields = ['image']
+
+
+@admin.register(Page)
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title',)
+    inlines = [PageImagesInline, PageFilesInline]

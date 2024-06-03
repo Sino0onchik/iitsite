@@ -16,6 +16,7 @@ class HomePage(generic.TemplateView):
         context['site'] = SiteSetting.objects.all().first()
         context['news'] = News.objects.all()[:2]
         context['brands'] = Brands.objects.all()
+        context['pages'] = Page.objects.all()
         return context
 
 
@@ -30,6 +31,7 @@ class CafedraListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['cafedras'] = Cafedra.objects.all()[:10]
         context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
         return context
 
 
@@ -41,12 +43,19 @@ class NewsListView(generic.ListView):
     context_object_name = 'news'
     queryset = News.objects.all()
 
+    def get_queryset(self):
+        query = self.queryset
+        filter = self.filter_class(self.request.GET, queryset=query)
+        query = filter.qs
+        return query
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['cafedras'] = Cafedra.objects.all()[:10]
         context['new_news'] = News.objects.all()[:5]
         context['categories'] = Category.objects.all()
         context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
         return context
 
 
@@ -62,6 +71,7 @@ class NewsDetailView(generic.DetailView):
         context['site'] = SiteSetting.objects.all().first()
         context['cafedras'] = Cafedra.objects.all()[:10]
         context['related_news'] = News.objects.all().order_by('?')[:2]
+        context['pages'] = Page.objects.all()
         return context
 
 
@@ -74,6 +84,7 @@ class TeacherDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
         context['cafedras'] = Cafedra.objects.all()[:10]
         return context
 
@@ -89,6 +100,7 @@ class CafedraDetailView(generic.DetailView):
         context['categories'] = Category.objects.all()
         context['cafedras'] = Cafedra.objects.all()[:10]
         context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
         return context
 
 
@@ -103,5 +115,32 @@ class ApplicationCreateView(generic.CreateView):
         context['categories'] = Category.objects.all()
         context['cafedras'] = Cafedra.objects.all()[:10]
         context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
         return context
 
+
+class AboutUsView(generic.TemplateView):
+    template_name = 'about-us.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['cafedras'] = Cafedra.objects.all()[:10]
+        context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
+        return context
+
+
+class PageDetailView(generic.DetailView):
+    template_name = 'page.html'
+    queryset = Page.objects.all()
+    model = Page
+    context_object_name = 'page'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['cafedras'] = Cafedra.objects.all()[:10]
+        context['site'] = SiteSetting.objects.all().first()
+        context['pages'] = Page.objects.all()
+        return context

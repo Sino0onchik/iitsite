@@ -144,7 +144,7 @@
                                     <!-- Widget Category Start -->
                                     <ul class="category">
                                         {% for i in categories %}
-                                        <li class="cate-item"><a href="#">{{ i.title }} <span class="post-count">{{ i.all_news.all.count }}</span></a></li>
+                                        <li class="cate-item"><a href="?category={{ i.pk }}">{{ i.title }} <span class="post-count">{{ i.all_news.all.count }}</span></a></li>
                                         {% endfor %}
                                     </ul>
                                     <!-- Widget Category End -->
