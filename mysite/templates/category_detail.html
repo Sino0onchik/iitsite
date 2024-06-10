@@ -25,6 +25,9 @@
                                 <br>
                                 <!-- Single Blog Post End -->
                                 {% for i in category.pages.all %}
+                                <br>
+                                <br>
+                                <br>
                                 <a href="{% url 'page_detail' i.pk %}"><h4>{{ i.title }}</h4></a>
                                 {% endfor %}
                             </div>
