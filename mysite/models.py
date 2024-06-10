@@ -144,9 +144,22 @@ class Application(models.Model):
         ordering = ['-created_at']
 
 
+class CategoryPage(models.Model):
+    title = models.CharField(max_length=123, verbose_name='Название')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'Категория для страниц'
+        verbose_name_plural = 'Категории для страниц'
+
+
 class Page(models.Model):
     title = models.CharField(max_length=123, verbose_name='Название')
     content = RichTextField(verbose_name='Содержимое')
+    category = models.ForeignKey(CategoryPage, on_delete=models.PROTECT, verbose_name='категория', related_name='pages')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

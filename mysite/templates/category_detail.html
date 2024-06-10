@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <!-- Blog Start -->
+        <div class="section blog-standard-section section-padding">
+            <div class="container">
+                <!-- Blog Wrapper Start -->
+                <div class="blog-details-wrapper">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Blog Details Post Start -->
+                            <div class="blog-details-post">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <!-- Single Blog Post Start -->
+                                <h1>{{ category.title }}</h1>
+                                <br>
+                                <br>
+                                <br>
+                                <!-- Single Blog Post End -->
+                                {% for i in category.pages.all %}
+                                <a href="{% url 'page_detail' i.pk %}"><h4>{{ i.title }}</h4></a>
+                                {% endfor %}
+                            </div>
+                            <!-- Blog Details Post End -->
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Blog Wrapper End -->
+            </div>
+        </div>
+        <!-- Blog End -->
+{% endblock %}

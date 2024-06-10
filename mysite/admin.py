@@ -14,6 +14,12 @@ class TeacherAdmin(admin.ModelAdmin):
     search_fields = ('name', )
 
 
+@admin.register(CategoryPage)
+class CategoryPageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'created_at')
+    search_fields = ('title', )
+
+
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'created_at')

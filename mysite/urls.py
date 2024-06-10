@@ -10,6 +10,7 @@ urlpatterns = [
     path('cafedra/list/', CafedraListView.as_view(), name='cafedras'),
     path('cafedra/detail/<int:pk>/', CafedraDetailView.as_view(), name='cafedra_detail'),
     path('page/detail/<int:pk>/', PageDetailView.as_view(), name='page_detail'),
+    path('category_page/detail/<int:pk>/', CategoryDetailView.as_view(), name='categorypage_detail'),
     path('contact/', ApplicationCreateView.as_view(), name='contact'),
     path('about_us/', AboutUsView.as_view(), name='about_us'),
 ]

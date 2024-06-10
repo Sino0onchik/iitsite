@@ -93,7 +93,7 @@
                                 <li><a href="">{% get_or_create_content 'Доп Информация' %}</a>
                                     <ul class="sub-menu">
                                         {% for i in pages %}
-                                        <li><a href="{% url 'page_detail' i.pk %}">{{ i.title }}</a></li>
+                                        <li><a href="{% url 'categorypage_detail' i.pk %}">{{ i.title }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </li>
@@ -158,12 +158,12 @@
                             <a href="{% url 'home' %}">{% get_or_create_content 'Домой' %}</a>
 
                         </li>
-                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Кафедры' %}</a>
+                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Направлении' %}</a>
                                     <ul class="sub-menu">
                                         {% for i in cafedras %}
                                         <li><a href="{{ i.id }}">{{ i.title }}</a></li>
                                         {% endfor %}
-                                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Все кафедры' %}</a></li>
+                                        <li><a href="{% url 'cafedras' %}">{% get_or_create_content 'Все Направлении' %}</a></li>
                                     </ul>
                                 </li>
                         <li><a href="{% url 'about_us' %}">О нас</a></li>
